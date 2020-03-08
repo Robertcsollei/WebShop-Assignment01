@@ -1,0 +1,134 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+
+
+}
+<style>
+ 
+    .container {
+        display: flex;
+        justify-content: space-between;
+    }
+    .image {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 15px;
+    }
+
+
+
+
+
+    .image > div img {
+        max-width: 150px;
+    }
+    p {
+        margin: 0;
+    }
+</style>
+
+<div class="container">
+    <div class="block">
+        <h2>Movie</h2>
+        @foreach (Product product in ViewBag.products)
+        {
+            if (product is Movie)
+            {
+                Movie movie = (Movie)product;
+
+                <div class="image">
+
+                    <div>
+                        <img src="@movie.ImageURL" alt="@movie.Title" />
+
+                    </div>
+                    <div>
+
+                        <b>Title:</b> @movie.Title  <br>
+                        <b>Director:</b> @movie.Director <br>
+                        <b>Price:</b> @movie.Price € <br>
+
+                    </div>
+
+                   
+                   
+
+
+                </div>
+            }
+        }
+    </div>
+    <div class="block">
+        <h2>Book</h2>
+        @foreach (Product product in ViewBag.products)
+        {
+            if (product is Book)
+            {
+                Book book = (Book)product;
+
+    <div class="image">
+
+
+        <div>
+            <img src="@book.ImageURL" alt="@book.Title image" />
+
+        </div>
+
+        <div>
+            <b>Title:</b> @book.Title  <br>
+            <b>Author:</b> @book.Author <br>
+            <b>Price:</b> @book.Price € <br>
+            <b>Published:</b> @book.Published <br>
+
+        </div>
+
+
+
+
+
+    </div>
+            }
+        }
+    </div>
+    <div class="block">
+        <h2>Music</h2>
+        @foreach (Product product in ViewBag.products)
+        {
+            if (product is MusicCD)
+            {
+                MusicCD music = (MusicCD)product;
+
+    <div class="image">
+
+
+        <div>
+            <img src="@music.ImageURL" alt="@music.Title image" />
+
+        </div>
+
+        <div>
+            <b>Title:</b> @music.Title  <br>
+            <b>Artist:</b> @music.Artist <br>
+            <b>Price:</b> @music.Price € <br>
+            <b>Released:</b> @music.Released <br>
+            
+
+        </div>
+        
+        
+
+    </div>
+    <div>
+        <b>Tracks:</b> <br />
+        @foreach (track track in music.Tracks)
+        {
+            <p><b> @track.Title</b> - <i>@track.Composer</i> - @track.Length </p>
+        }
+    </div>
+            }
+        }
+    </div>
+
+
+</div>

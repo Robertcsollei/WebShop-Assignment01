@@ -1,0 +1,99 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+
+}
+
+<style>
+    tr:nth-child(even) {
+        background: #CCC
+    }
+    tr:nth-child(odd) {
+        background: #FFF
+    }
+
+
+</style>
+
+
+<h1>Invoice List</h1>
+
+<div>
+    <table>
+        <tr>
+            <td><b>Customer</b></td>
+            <td><b>Product</b></td>
+            <td><b>Price</b></td>
+        </tr>
+
+        @foreach (Invoice invoice in @ViewBag.Invoices)
+        {
+
+            <tr >
+                <td style="padding-right: 50px;" valign="top">@invoice.Customer.FirstName @invoice.Customer.LastName</td>
+                <td style="padding-right: 50px;" valign="top">
+
+                    @foreach (var productName in invoice.OrderItem)
+                    {
+
+                        @productName.Product.Title <br />
+                    }
+
+
+                </td>
+                <td>
+                    @foreach (var price in invoice.OrderItem)
+                    {
+
+                        @price.TotalPrice   <br />
+
+
+                    }
+
+                   
+
+
+
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><b>Total</b></td>
+                <td>
+
+                    
+                    @invoice.TotalPrice 
+                    
+
+                </td>
+
+            </tr>
+
+        }
+    </table>
+    <!--
+    <table style="width:100%">
+        <tr>
+            <th>Customer:</th>
+            <th>Product:</th>
+            <th>Price:</th>
+
+        </tr>
+
+        @foreach (Invoice invoice in ViewBag.Invoices)
+        {
+            <tr>
+                <th rowspan="@ViewBag.count">@invoice.Customer.FirstName @invoice.Customer.LastName</th>
+                </tr>
+                @foreach (var name in invoice.OrderItem) {
+                     <tr>@name.Product.Title</tr>
+                }
+
+
+        }
+    </table>
+        -->
+</div>
+
+
+

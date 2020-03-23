@@ -8,17 +8,8 @@ namespace WebShop_Assignment.Models
 {
     public class Invoice 
     {
-        private decimal totalPrice;
-
-        //Preventing duplicate values when the page refreshes
-        private decimal holder;
-        private int counter = 0;
-        //
-        private decimal caches(decimal a) {
-
-            return holder += a ;
-        }
-
+        private decimal totalPrice ;
+  
         public int InvoiceId { set; get; }
         public DateTime OrderDate { set; get; }
         public Customer Customer { set; get; }
@@ -27,12 +18,13 @@ namespace WebShop_Assignment.Models
         public decimal TotalPrice {
             get
             {
+                this.totalPrice = 0;
                 foreach (var item in this.OrderItem)
                 {
-                    this.caches(item.TotalPrice);
+                   this.totalPrice += item.TotalPrice;
                 }
-                this.counter++;
-                return this.totalPrice = holder / counter;
+                
+                return  this.totalPrice;
 
 
             }

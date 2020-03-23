@@ -44,7 +44,7 @@ namespace WebShop_Assignment.Infrastructure
             Products.Add(Annihilation);
 
             Customer Neo = new Customer(1, "Neo", "The One", "Chicago", "0000", "Zion" );
-            Customer Shephard = new Customer(1, "John", "Sephard", "Mindoir", "999999", "N7" );
+            Customer Shephard = new Customer(2, "John", "Sephard", "Mindoir", "999999", "N7" );
 
             OrderId newMusic = new OrderId(John, 22);
             OrderId newBook = new OrderId(OnTheRoad, 4);

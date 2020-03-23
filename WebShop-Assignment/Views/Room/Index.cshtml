@@ -1,0 +1,34 @@
+﻿@addTagHelper"*, Microsoft.AspNetCore.Mvc.TagHelpers"
+@using WebShop_Assignment.Models
+@model BreakfastOrder
+
+<!DOCTYPEhtml>
+    <html>
+    <head>
+        <metaname ="viewport" content="width=device-width" />
+        <title>Breakfast order</title>
+    </head>
+    <body>
+        <h1>Breakfast order</h1>
+
+        <form asp-action="Index" asp-controller="Room">
+
+            <p>Your name: <input  asp-for="FullName" /></p>
+             
+            <p>Room number: <input asp-for="RoomNumber" /></p>
+
+            <p>
+                What would you like to eat for breakfast?<br /><br />
+                @for(int i = 0; i < Model.BreakFastFoods.Count(); i++){
+                <input asp-for ="@Model.BreakFastFoods[i].Selected" type="checkbox" />
+                     @Model.BreakFastFoods[i].Name
+                <input asp-for ="@Model.BreakFastFoods[i].BreakfastFoodId" type="hidden" />
+                <input asp-for ="@Model.BreakFastFoods[i].Name" type="hidden" />
+                <inputasp-for ="@Model.BreakFastFoods[i].Price" type="hidden" />}
+            </p>
+
+            <p>When:<input type="datetime" name="time" /> </p>
+            <p><input type="submit" value="Order" /></p>
+        </form>
+    </body>
+</html>

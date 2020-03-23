@@ -19,80 +19,70 @@
 <h1>Invoice List</h1>
 
 <div>
-    <table>
-        <tr>
-            <td><b>Customer</b></td>
-            <td><b>Product</b></td>
-            <td><b>Price</b></td>
-        </tr>
-
-        @foreach (Invoice invoice in @ViewBag.Invoices)
-        {
-
-            <tr >
-                <td style="padding-right: 50px;" valign="top">@invoice.Customer.FirstName @invoice.Customer.LastName</td>
-                <td style="padding-right: 50px;" valign="top">
-
-                    @foreach (var productName in invoice.OrderItem)
-                    {
-
-                        @productName.Product.Title <br />
-                    }
-
-
-                </td>
-                <td>
-                    @foreach (var price in invoice.OrderItem)
-                    {
-
-                        @price.TotalPrice   <br />
-
-
-                    }
-
-                   
-
-
-
-                </td>
-            </tr>
+    @if (ViewBag.Invoices != null)
+    {
+        <table>
             <tr>
-                <td></td>
-                <td><b>Total</b></td>
-                <td>
-
-                    
-                    @invoice.TotalPrice 
-                    
-
-                </td>
-
+                <td><b>Customer</b></td>
+                <td><b>Product</b></td>
+                <td><b>Price</b></td>
             </tr>
 
-        }
-    </table>
-    <!--
-    <table style="width:100%">
-        <tr>
-            <th>Customer:</th>
-            <th>Product:</th>
-            <th>Price:</th>
+            @foreach (Invoice invoice in @ViewBag.Invoices)
+            {
 
-        </tr>
+                <tr>
+                    <td style="padding-right: 50px;" valign="top">@invoice.Customer.FirstName @invoice.Customer.LastName</td>
+                    <td style="padding-right: 50px;" valign="top">
 
-        @foreach (Invoice invoice in ViewBag.Invoices)
-        {
-            <tr>
-                <th rowspan="@ViewBag.count">@invoice.Customer.FirstName @invoice.Customer.LastName</th>
+                        @foreach (var productName in invoice.OrderItem)
+                        {
+
+                            @productName.Product.Title <br />
+                        }
+
+
+                    </td>
+                    <td>
+                        @foreach (var price in invoice.OrderItem)
+                        {
+
+                            @price.TotalPrice <br />
+
+
+                        }
+
+
+
+
+
+                    </td>
                 </tr>
-                @foreach (var name in invoice.OrderItem) {
-                     <tr>@name.Product.Title</tr>
-                }
+                <tr>
+                    <td></td>
+                    <td><b>Total</b></td>
+                    <td>
 
 
-        }
-    </table>
-        -->
+                        @invoice.TotalPrice
+
+
+                    </td>
+
+                </tr>
+
+            }
+        </table>
+
+    }
+    <form method="post" asp-controller="Invoices" asp-action="index">
+        <div>
+            <select name="customer" id="customer" asp-items="@ViewData["Customers"]as List<SelectListItem>"></select>
+            <button type="submit">Show invoices</button>
+        </div>
+    </form>
+
+
 </div>
 
 
